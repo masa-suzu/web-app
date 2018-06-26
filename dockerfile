@@ -9,9 +9,9 @@ RUN apk add --update git \
     && cd /go/src/app \
     && mkdir /go/bin/app \
     && go build -o /go/bin/app/server server.go \
-    && ls template \
+    && ls resources \
     && cd /go/bin/app \
-    && mv /go/src/app/template .
+    && mv /go/src/app/resources .
 
 FROM alpine:3.7
 COPY --from=build /go/bin/app /

@@ -17,11 +17,11 @@ func (page *page) updateCount() *page {
 }
 
 func (page *page) faviconHandler(w http.ResponseWriter, r *http.Request) {
-
+	http.ServeFile(w, r, "resources/favicon.ico")
 }
 
 func (page *page) viewHandler(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("template/layout.html")
+	tmpl, err := template.ParseFiles("resources/layout.html")
 	if err != nil {
 		panic(err)
 	}
@@ -34,7 +34,7 @@ func (page *page) viewHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	args := os.Args
-	page := page{"Http Server", 0}
+	page := page{"Go Counter", 0}
 
 	http.HandleFunc("/", page.viewHandler)
 	http.HandleFunc("/favicon.ico", page.faviconHandler) // Avoid to call page.viewHandler twice.
