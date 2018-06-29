@@ -1,4 +1,3 @@
 /.vscode/*
 /*.exe
 /debug
-/docker-compose.yml

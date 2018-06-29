@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  nginx:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/docker-compose.d/certs:/etc/nginx/certs
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    restart: always
+
+  webapp1:
+    build: .
+    environment:
+      VIRTUAL_HOST: webapp1
+      VIRTUAL_PORT: 8081
+
+  webapp2:
+    build: .
+    environment:
+      VIRTUAL_HOST: webapp2
+      VIRTUAL_PORT: 8082
+  webapp3:
+    build: .
+    environment:
+      VIRTUAL_HOST: webapp3
+      VIRTUAL_PORT: 8083
